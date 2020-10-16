@@ -4,14 +4,19 @@ use regex::Regex;
 
 fn main() {
 	println!("Enter a string: ");
-	let input = read_line_iter();
+	let mut input = read_line_iter();
 	println!("Your input: {}", input);
-	let re = Regex::new(r"\d\d\d[a-z]+$").unwrap();
-	if re.is_match(&input) {
-		println!("It matched!");
-	}else{
-		println!("It is not a match");
+	let myregex = r"\d\d\d[a-z]+$";
+	let re = Regex::new(myregex).unwrap();
+
+	while re.is_match(&input) {
+		println!("It matched {}", input );
+		println!("Enter a string: ");
+		input = read_line_iter();
+
 	}
+	println!("It is not a match");
+	
 }
 fn read_line_iter() -> String{
 	let stdin = io::stdin();
